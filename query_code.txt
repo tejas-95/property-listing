@@ -1,0 +1,247 @@
+
+
+1. Find out the average rental price for every type of room available on the app/website.
+Athensselect avg(price) as avg_hotel , (select avg(price) from tlisting
+where room_type = 'Shared Room') as shared_avg ,
+(select avg(price) as avg_hotel
+from tlisting
+where room_type = 'Private Room') as avg_room , (select avg(price)
+from tlisting
+where room_type = 'Entire home/apt') as avg_apt
+from alisting
+where room_type = 'Hotel Room'
+Thessaloniki
+select avg(price) as avg_hotel , (select avg(price) from tlisting
+where room_type = 'Shared Room') as shared_avg ,
+(select avg(price) as avg_hotel
+from tlisting
+where room_type = 'Private Room') as avg_room , (select avg(price)
+from tlisting
+where room_type = 'Entire home/apt') as avg_apt
+from tlisting
+where room_type = 'Hotel Room'
+2. Analyze the trend between property vacancy rate for all the months in the year 2022.
+Athens
+select year(date) as year_ , month(date) as month_ , count(available) as availability_
+from atavb
+where available = 1 and year(date) = 2022
+group by year(date) , month(date)
+order by availability_ desc
+Thessaloniki
+select year(date) as year_ , month(date) as month_ , count(available) as availability_
+from tavb
+where available = 1 and year(date) = 2022
+group by year(date) , month(date)
+order by availability_ desc
+3. Find the monthly property-type vacancy and also find out if there is any trend in average
+price across the months.
+Athens
+select a.property_type ,month(d.date)
+as month,avg(a.price) as avg_price ,count(d.available) as number_of_availabilty
+from atavb as d inner join alisting as a on d.listing_id= a.id
+where d.available = 1
+group by a.property_type,month(d.date)
+order by a.property_type
+Thessaloniki
+select a.property_type ,month(d.date)
+as month,avg(a.price) as avg_price ,count(d.available) as number_of_availabilty
+from tavb as d inner join tlisting as a on d.listing_id= a.id
+where d.available = 1
+group by a.property_type,month(d.date)
+order by a.property_type
+4. Find out the top 5 best selling/rented property-types available on the app/website .
+Athens
+select top 5 t2.property_type , count(available) as availability_
+from atavb t1 inner join alisting t2 on t2.id = t1.listing_id
+where available = 0 and year(date) = 2022
+group by t2.property_type
+order by availability_ desc
+Thessaloniki
+select top 5 t2.property_type , count(available) as availability_
+from tavb t1 inner join tlisting t2 on t2.id = t1.listing_id
+where available = 0 and year(date) = 2022
+group by t2.property_type
+order by availability_ desc
+5. Analyze if there is any relation between hosts response time and property being rented.
+Athens
+select t1.host_response_time , count(t3.available) as sold_rented
+from ahost t1 inner join alisting t2 on t1.host_id = t2.host_id inner join atavb t3 on t2.id =
+t3.listing_id
+where t3.available = 0 and not t1.host_response_time = 'null'
+group by t1.host_response_time
+Thessaloniki
+select t1.host_response_time , count(t3.available) as not_available
+from thost t1 inner join tlisting t2 on t1.host_id = t2.host_id inner join tavb t3 on t2.id =
+t3.listing_id
+where t3.available = 0 and not t1.host_response_time = 'null'
+group by t1.host_response_time
+6. Categorize the properties into different categories based on their rating and get count of
+each category
+Athens
+select
+case
+when review_scores_rating <= 3.0 then 'poor'
+when review_scores_rating < 4.0 then 'average'
+when review_scores_rating >= 4.7 then 'premium'
+when review_scores_rating >= 4.0 then 'good'
+else 'not_rated'
+end as rating_category , count(*) as total_property , avg(review_scores_rating) as avg_rating
+from alisting
+group by
+case
+when review_scores_rating <= 3.0 then 'poor'
+when review_scores_rating < 4.0 then 'average'
+when review_scores_rating >= 4.7 then 'premium'
+when review_scores_rating >= 4.0 then 'good'
+else 'not_rated'
+end
+order by total_property desc
+Thessaloniki
+select
+case
+when review_scores_rating <= 3.0 then 'poor'
+when review_scores_rating < 4.0 then 'average'
+when review_scores_rating >= 4.7 then 'premium'
+when review_scores_rating >= 4.0 then 'good'
+else 'not_rated'
+end as rating_category , count(*) as total_property , avg(review_scores_rating) as avg_rating
+from tlisting
+group by
+case
+when review_scores_rating <= 3.0 then 'poor'
+when review_scores_rating < 4.0 then 'average'
+when review_scores_rating >= 4.7 then 'premium'
+when review_scores_rating >= 4.0 then 'good'
+else 'not_rated'
+end
+order by total_property desc
+7. Find the property renting rate area-wise as well as their average price.
+Athens
+select neighbourhood_cleansed , avg(t1.price) as avg_price , count(available) as
+rented_property
+from alisting t1 inner join atavb t2 on t1.id = t2.listing_id
+where available = 0
+group by neighbourhood_cleansed
+order by rented_property desc
+thessaloniki
+select neighbourhood_cleansed , avg(t1.price) as avg_price , count(available) as
+rented_property
+from tlisting t1 inner join tavb t2 on t1.id = t2.listing_id
+where available = 0
+group by neighbourhood_cleansed
+order by rented_property desc
+8. Analyze the trend in relation with rented properties with vacant properties between
+superhosts vs non superhosts.
+Athens
+select 'superhost' as host_type, count(available) as rented_property ,
+(
+select count(available)
+from ahost t0 inner join alisting t1 on t0.host_id = t1.host_id inner join atavb t2 on t1.id =
+t2.listing_id
+where t0.host_is_superhost = 1 and t2.available = 1
+) as vacant_property
+from thost t0 inner join tlisting t1 on t0.host_id = t1.host_id inner join tavb t2 on t1.id =
+t2.listing_id
+where t0.host_is_superhost = 1 and t2.available = 0
+Union
+select 'nonsuperhost' as host_type , count(available) as rented_property ,
+(
+select count(available)
+from ahost t0 inner join alisting t1 on t0.host_id = t1.host_id inner join atavb t2 on t1.id =
+t2.listing_id
+where t0.host_is_superhost = 0 and t2.available = 1
+) as vacant_property
+from thost t0 inner join tlisting t1 on t0.host_id = t1.host_id inner join tavb t2 on t1.id =
+t2.listing_id
+where t0.host_is_superhost = 0 and t2.available = 0
+Thessaloniki
+select 'superhost' as host_type, count(available) as rented_property ,
+(
+select count(available)
+from thost t0 inner join tlisting t1 on t0.host_id = t1.host_id inner join tavb t2 on t1.id =
+t2.listing_id
+where t0.host_is_superhost = 1 and t2.available = 1
+) as vacant_property
+from thost t0 inner join tlisting t1 on t0.host_id = t1.host_id inner join tavb t2 on t1.id =
+t2.listing_id
+where t0.host_is_superhost = 1 and t2.available = 0
+union
+select 'nonsuperhost' as host_type , count(available) as rented_property ,
+(
+select count(available)
+from thost t0 inner join tlisting t1 on t0.host_id = t1.host_id inner join tavb t2 on t1.id =
+t2.listing_id
+where t0.host_is_superhost = 0 and t2.available = 1
+) as vacant_property
+from thost t0 inner join tlisting t1 on t0.host_id = t1.host_id inner join tavb t2 on t1.id =
+t2.listing_id
+where t0.host_is_superhost = 0 and t2.available = 0
+9. Find out the correlation between the properties which are instantly bookable vs not
+instantly bookable.
+Also analyze the numbers of properties which are rented vs properties which are vacant
+Athens
+select count(t1.instant_bookable) as instantly_bookable ,
+(
+select count(t2.available)
+from alisting t1 inner join atavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 1 and available = 0
+) as rented
+,
+(
+select count(t2.available)
+from alisting t1 inner join atavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 1 and available = 1
+) as vacant
+,
+(
+select count(t1.instant_bookable)
+from alisting t1 inner join atavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 0
+) as non_instantlynookable
+,
+(
+select count(t2.available)
+from alisting t1 inner join atavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 0 and available = 0
+) as rented
+,
+(
+select count(t2.available)
+from alisting t1 inner join atavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 0 and available = 1
+) as vacant
+from alisting t1 inner join atavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 1
+Thessaloniki
+select count(t1.instant_bookable) as instantly_bookable ,
+(
+select count(t2.available)
+from tlisting t1 inner join tavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 1 and available = 0
+) as rented
+,
+(
+select count(t2.available)
+from tlisting t1 inner join tavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 1 and available = 1
+) as vacant
+,
+(
+select count(t1.instant_bookable)
+from tlisting t1 inner join tavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 0
+) as non_instantlynookable
+,
+(
+select count(t2.available)
+from tlisting t1 inner join tavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 0 and available = 0
+) as rented
+,
+(
+select count(t2.available)
+from tlisting t1 inner join tavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 0 and available = 1
+) as vacant
+from tlisting t1 inner join tavb t2 on t1.id = t2.listing_id
+where t1.instant_bookable = 1
