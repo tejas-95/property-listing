@@ -20,6 +20,8 @@ from tlisting
 where room_type = 'Entire home/apt') as avg_apt
 from tlisting
 where room_type = 'Hotel Room'
+
+
 2. Analyze the trend between property vacancy rate for all the months in the year 2022.
 Athens
 select year(date) as year_ , month(date) as month_ , count(available) as availability_
@@ -33,6 +35,8 @@ from tavb
 where available = 1 and year(date) = 2022
 group by year(date) , month(date)
 order by availability_ desc
+
+
 3. Find the monthly property-type vacancy and also find out if there is any trend in average
 price across the months.
 Athens
@@ -49,6 +53,8 @@ from tavb as d inner join tlisting as a on d.listing_id= a.id
 where d.available = 1
 group by a.property_type,month(d.date)
 order by a.property_type
+
+
 4. Find out the top 5 best selling/rented property-types available on the app/website .
 Athens
 select top 5 t2.property_type , count(available) as availability_
@@ -62,6 +68,8 @@ from tavb t1 inner join tlisting t2 on t2.id = t1.listing_id
 where available = 0 and year(date) = 2022
 group by t2.property_type
 order by availability_ desc
+
+
 5. Analyze if there is any relation between hosts response time and property being rented.
 Athens
 select t1.host_response_time , count(t3.available) as sold_rented
@@ -75,6 +83,8 @@ from thost t1 inner join tlisting t2 on t1.host_id = t2.host_id inner join tavb 
 t3.listing_id
 where t3.available = 0 and not t1.host_response_time = 'null'
 group by t1.host_response_time
+
+
 6. Categorize the properties into different categories based on their rating and get count of
 each category
 Athens
@@ -115,6 +125,8 @@ when review_scores_rating >= 4.0 then 'good'
 else 'not_rated'
 end
 order by total_property desc
+
+
 7. Find the property renting rate area-wise as well as their average price.
 Athens
 select neighbourhood_cleansed , avg(t1.price) as avg_price , count(available) as
@@ -130,6 +142,8 @@ from tlisting t1 inner join tavb t2 on t1.id = t2.listing_id
 where available = 0
 group by neighbourhood_cleansed
 order by rented_property desc
+
+
 8. Analyze the trend in relation with rented properties with vacant properties between
 superhosts vs non superhosts.
 Athens
@@ -176,6 +190,8 @@ where t0.host_is_superhost = 0 and t2.available = 1
 from thost t0 inner join tlisting t1 on t0.host_id = t1.host_id inner join tavb t2 on t1.id =
 t2.listing_id
 where t0.host_is_superhost = 0 and t2.available = 0
+
+
 9. Find out the correlation between the properties which are instantly bookable vs not
 instantly bookable.
 Also analyze the numbers of properties which are rented vs properties which are vacant
