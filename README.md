@@ -55,7 +55,7 @@ This depository contains the analysis of property listings for a property rental
 
 ## <img src="https://user-images.githubusercontent.com/106439762/181937125-2a4b22a3-f8a9-4226-bbd3-df972f9dbbc4.gif" width="48" height="48" > Quick Start
 
-        o       Analysed the working of the property rental company.    
+    o Analysed the working of the property rental company.    
     
     o	Explored the trends for the different property types listed on the platform.
      
