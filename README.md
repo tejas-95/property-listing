@@ -23,19 +23,21 @@ This depository contains the analysis of property listings for a property rental
 ##  <img src=https://user-images.githubusercontent.com/106439762/178428775-03d67679-9aa4-4b08-91e9-6eb6ed8faf66.gif  width="48" height="48"> Analysis
    
     
-    o       Analysed the working of the property rental company.    
+1. Stated with creating the new database and importing all the flat files into the database.
     
-    o	Explored the trends for the different property types listed on the platform.
-     
-    o	Studied the trends of the different property categories and provided the insights on the same.
-  
-    o	Analysed if there is any correlation between property type and their availability across months. 
+    2. Did a bit of cleaning and changed the datatypes accordingly.
     
-    o	Explored the peak and off peak time for different property types and their listings.
+    3. Took help of different SQL clauses like group by, order by, having etc in order to manupalate the data and get the insights out.
     
-    o	Analysed the acceptance rate, ratings, price, accomodates with respect to diffrent property types.
-
-    o	Demonstrated the relationship between price of the property and number of accomodates.
+    4. Also used some of the aggregate functions like sum, average , count along with case when statement and windows function to analysis the data.
+    
+    5. Took help of CTEs for writing the some of the complex queries for bucketing.
+    
+    6. Exported all the tables from SQL to excel and created required pivot tables to gain some insights.
+    
+    7. Created the pivot charts from the table for better understanding of the data.
+    
+    8. Also Designed a interactive dashboard from the charts for better visualisation.
 
 
 
@@ -53,21 +55,21 @@ This depository contains the analysis of property listings for a property rental
 
 ## <img src="https://user-images.githubusercontent.com/106439762/181937125-2a4b22a3-f8a9-4226-bbd3-df972f9dbbc4.gif" width="48" height="48" > Quick Start
 
-    1. Stated with creating the new database and importing all the flat files into the database.
+        o       Analysed the working of the property rental company.    
     
-    2. Did a bit of cleaning and changed the datatypes accordingly.
+    o	Explored the trends for the different property types listed on the platform.
+     
+    o	Studied the trends of the different property categories and provided the insights on the same.
+  
+    o	Analysed if there is any correlation between property type and their availability across months. 
     
-    3. Took help of different SQL clauses like group by, order by, having etc in order to manupalate the data and get the insights out.
+    o	Explored the peak and off peak time for different property types and their listings.
     
-    4. Also used some of the aggregate functions like sum, average , count along with case when statement and windows function to analysis the data.
+    o	Analysed the acceptance rate, ratings, price, accomodates with respect to diffrent property types.
+
+    o	Demonstrated the relationship between price of the property and number of accomodates.
     
-    5. Took help of CTEs for writing the some of the complex queries for bucketing.
     
-    6. Exported all the tables from SQL to excel and created required pivot tables to gain some insights.
-    
-    7. Created the pivot charts from the table for better understanding of the data.
-    
-    8. Also Designed a interactive dashboard from the charts for better visualisation.
     
             
    
