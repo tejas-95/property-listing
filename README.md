@@ -88,13 +88,13 @@ This depository contains the analysis of property listings for a property rental
 
 ## <img src="https://user-images.githubusercontent.com/108053296/185756908-fbb62168-d923-48f2-992f-b8e2fde848fe.gif" width="48" height="48" > Conclusion
    
-   1. Most of the reviews and ratings from the customers buying different properties were positive which shows that the customers are satisfied with the kind of property the company is offering.
+   1. Properties whos Hosts who replied within hour had rented out their properties more than the hosts who replied late and thus could be incorporated into super program
    
-   2. March-April and December is peak season for the company and around June month is the off peak season.
+   2. Rate of occupancy has followed a trend where it is found that vacany decreases towards end of the year i.e holiday season.
    
-   3. Properties in Vancouver is way more costlier than that of properties in Toronto.
+   3. Highly rated Properties were rented out the most as compared to low rated properties.
    
-   4. Shared rooms have worse cleanliness rating and also priced low compared to others.
+   4. Superhost program needs to undergo changes to make it more attractive.
 
 
 <!--  ## <img src=https://user-images.githubusercontent.com/106439762/178809088-a2d780ad-94f5-4a58-9203-7716d4b2cbf4.gif width="48" height="48"> About Me
