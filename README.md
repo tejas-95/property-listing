@@ -1,7 +1,7 @@
 # 
 # <img src="https://user-images.githubusercontent.com/108053296/185731493-565fc7cd-50de-4fba-af77-7eec53f6e596.png" width="48" height="48" >  **Property Listing Analysis Through SQL**
 
-This depository contains the analysis of property listings for a property rental company.The dataset provided has the information regarding the two cities in Greece. The through analysis of the property listings is being done for the data and the meaningful insights have been provided.Also extensive charts have been created to visualize the data in the best possible way and an interactive dashboard have been designed from it.
+This depository contains the analysis of property listings for a property rental company.The dataset provided has the information regarding the two cities in Greece. The thorough analysis of the property listings is being done for the data and the meaningful insights have been provided.Also extensive charts have been created to visualize the data in the best possible way and an interactive dashboard have been designed from it.
 
 
 <br>
