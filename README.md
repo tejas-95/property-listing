@@ -31,7 +31,7 @@ This depository contains the analysis of property listings for a property rental
     
     4. Also used some of the aggregate functions like sum, average , count along with case when statement and windows function to analysis the data.
     
-    5. Took help of CTEs for writing the some of the complex queries for bucketing.
+    5. Took help of CASE function for writing  queries for bucketing.
     
     6. Exported all the tables from SQL to excel and created required pivot tables to gain some insights.
     
