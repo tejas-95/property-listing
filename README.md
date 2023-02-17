@@ -35,9 +35,9 @@ This depository contains the analysis of property listings for a property rental
     
     6. Exported all the tables from SQL to excel and created required pivot tables to gain some insights.
     
-    7. Created the pivot charts from the table for better understanding of the data.
+    7. Created the charts from the table for better understanding pattern of the data.
     
-    8. Also Designed a interactive dashboard from the charts for better visualisation.
+   
 
 
 
